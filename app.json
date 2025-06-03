@@ -1,25 +1,19 @@
 {
   "expo": {
-    "name": "Sample App",
-    "slug": "sample-app",
+    "name": "ImagePickerBugRepro",
+    "slug": "ImagePickerBugRepro",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/adaptive-icon.png",
-    "scheme": "sampleapp",
-    "userInterfaceStyle": "automatic",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/images/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.sampleapp.app",
-      "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
-      }
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
@@ -27,7 +21,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.sampleapp.app",
+      "package": "com.imagepickerbugrepro.app",
       "permissions": [
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO",
@@ -53,6 +47,12 @@
         }
       ],
       [
+        "expo-sqlite",
+        {
+          "enableFTS": true
+        }
+      ],
+      [
         "expo-image-picker",
         {
           "photosPermission": "The app accesses your photos to let you share them.",
@@ -64,9 +64,8 @@
       "typedRoutes": true
     },
     "extra": {
-      "router": {},
       "eas": {
-        "projectId": "10c233fc-8c53-4403-8904-83d02625f3b8"
+        "projectId": "5db2371f-d386-4d08-bee8-eac88c4e634e"
       }
     }
   }
