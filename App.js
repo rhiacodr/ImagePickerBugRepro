@@ -35,6 +35,33 @@ export default function App() {
     }
   };
 
+  const testCameraCapture = async () => {
+    try {
+      // Request camera permissions
+      const cameraPermission =
+        await ImagePicker.requestCameraPermissionsAsync();
+
+      if (cameraPermission.status !== "granted") {
+        Alert.alert("Permission denied", "Camera permission is required");
+        return;
+      }
+
+      // Launch camera
+      const result = await ImagePicker.launchCameraAsync({
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 0.8,
+      });
+
+      if (!result.canceled) {
+        Alert.alert("Success", `Photo captured: ${result.assets[0].uri}`);
+      }
+    } catch (error) {
+      console.error("Camera error:", error);
+      Alert.alert("Error", `Camera failed: ${error}`);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>expo-image-picker Bug Repro</Text>
@@ -44,6 +71,13 @@ export default function App() {
 
       <TouchableOpacity style={styles.button} onPress={testImagePicker}>
         <Text style={styles.buttonText}>Test Image Picker</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={[styles.button, styles.cameraButton]}
+        onPress={testCameraCapture}
+      >
+        <Text style={styles.buttonText}>Test Camera Capture</Text>
       </TouchableOpacity>
 
       <Text style={styles.instructions}>
@@ -80,7 +114,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingVertical: 15,
     borderRadius: 8,
-    marginBottom: 30,
+    marginBottom: 15,
+  },
+  cameraButton: {
+    backgroundColor: "#28a745",
   },
   buttonText: {
     color: "white",
@@ -92,5 +129,6 @@ const styles = StyleSheet.create({
     color: "#888",
     textAlign: "center",
     lineHeight: 20,
+    marginTop: 15,
   },
 });
